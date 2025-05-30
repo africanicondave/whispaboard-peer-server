@@ -1,0 +1,11 @@
+{
+  "name": "whispaboard-peer-server",
+  "version": "1.0.0",
+  "main": "peer-server.js",
+  "scripts": {
+    "start": "node peer-server.js"
+  },
+  "dependencies": {
+    "peer": "^0.6.1"
+  }
+}
