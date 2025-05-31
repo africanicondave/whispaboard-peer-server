@@ -6,18 +6,20 @@ const server = require("http").createServer(app);
 
 const peerServer = ExpressPeerServer(server, {
   debug: true,
-  path: "/peerjs",
+  path: "/peerjs",           // Must match frontend
   allow_discovery: true,
 });
 
 app.use("/peerjs", peerServer);
 
-// Optional: Home route
+// Optional route for Render health check
 app.get("/", (req, res) => {
-  res.send("✅ WhispaBoard PeerJS server is live!");
+  res.send("✅ PeerJS server is live.");
 });
 
 const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => {
-  console.log(`✅ PeerJS server running at port ${PORT}`);
+
+// ✅ FIX: Bind to 0.0.0.0 for Render
+server.listen(PORT, "0.0.0.0", () => {
+  console.log(`✅ PeerJS server running at http://0.0.0.0:${PORT}`);
 });
