@@ -6,19 +6,19 @@ const server = require("http").createServer(app);
 
 const peerServer = ExpressPeerServer(server, {
   debug: true,
-  path: "/peerjs", // 👈 must match what you're using in frontend
+  path: "/peerjs",
   allow_discovery: true,
 });
 
 app.use("/peerjs", peerServer);
 
-// Optional: root message
+// Optional test route
 app.get("/", (req, res) => {
-  res.send("🟢 PeerJS server is live.");
+  res.send("✅ PeerJS server is live.");
 });
 
-// Start the server
-const PORT = process.env.PORT || 9000;
+// Required by Render — bind to process.env.PORT
+const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
-  console.log(`✅ PeerJS server running at http://localhost:${PORT}`);
+  console.log(`✅ PeerJS server running on Render at port ${PORT}`);
 });
